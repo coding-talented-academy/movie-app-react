@@ -4,21 +4,22 @@ import {movieApi} from "../../api";
 
 const HomeContainer = () => {
     
-    //react state
     const [movieData, setMovieData] = useState({
         nowPlaying : null,
         upcoming : null,
-        popular : null,
-        loading : true,
-        error : null
+        popular : null
     })
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
         getMovieData()
     }, [])
 
     const getMovieData = async () => {
-
+        
+        setLoading(true);
         try{
            const {data : {results : nowPlaying}} = await movieApi.nowPlaying();
            const {data : {results : upcoming}} = await movieApi.upcoming();
@@ -32,21 +33,15 @@ const HomeContainer = () => {
            })
 
         }catch{
-            setMovieData({
-                ...movieData,
-                error : "Can't find movie data"
-            })
+            setError("Can't find movie data")
         }finally{
-            setMovieData({
-                ...movieData,
-                loading : false
-            })
+            setLoading(false);
         }
         
     }
 
     return(
-        <HomePresenter movieData={movieData}></HomePresenter>
+        <HomePresenter movieData={movieData} loading={loading} error={error}></HomePresenter>
     )
 }
 

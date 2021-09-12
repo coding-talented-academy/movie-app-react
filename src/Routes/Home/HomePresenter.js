@@ -1,13 +1,8 @@
-import React, {useEffect} from "react";
+import React from "react";
 
-const HomePresenter = ({loading, popular}) => {
-
+const HomePresenter = () => {
     return(
-        loading ? "loading" : (
-            <span>
-                {popular && popular.length>0 && console.log(popular)}
-            </span>
-        )
+        "Home presenter"
     )
 }
 

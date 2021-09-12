@@ -1,8 +1,10 @@
 import React from "react";
 
-const SearchPresenter = () => {
+const SearchPresenter = ({handleSubmit}) => {
     return(
-        "search presenter"
+        <form onSubmit={handleSubmit}>
+            <input type="text"></input>
+        </form>
     )
 }
 

@@ -34,7 +34,6 @@ const SLink = styled(Link)`
 `;
 
 const Header = withRouter (({location : {pathname}}) => {
-    console.log(pathname)
 
     return(
         <Head>
