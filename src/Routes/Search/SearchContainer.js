@@ -8,7 +8,7 @@ const SearchContainer = () => {
         movieData : null,
         tvData : null
     })
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(null);
     const [error, setError] = useState(null);
 
     const handleSubmit = event => {
@@ -24,8 +24,8 @@ const SearchContainer = () => {
         setLoading(true);
 
         try{
-            const {data : movieData} = await movieApi.search(keyword);
-            const {data : tvData} = await tvShowApi.search(keyword);
+            const {data : {results : movieData}} = await movieApi.search(keyword);
+            const {data : {results : tvData}} = await tvShowApi.search(keyword);
             
             setSearchData({
                 movieData : movieData,
@@ -33,7 +33,7 @@ const SearchContainer = () => {
             })
 
         }catch{
-            setError("Can't find search result")
+            setError("Can't find search result..")
         }finally{
             setLoading(false)
         }
