@@ -1,16 +1,71 @@
-import React, {useEffect} from "react";
+import React from "react";
+import Loader from "../../Components/Loader";
+import styled from "styled-components";
+import Section from "../../Components/Section";
+import Poster from "../../Components/Poster";
 
-const HomePresenter = ({movieData, loading, error}) => {
+const Container = styled.div`
+    padding : 20px;
+`;
 
-    useEffect(()=>{
-        if(movieData!==null){
-            console.log(movieData)
-        }
-        
-    },[movieData])
+
+const HomePresenter = ({movieData : {nowPlaying, popular, upcoming}, loading, error}) => {
 
     return(
-        "Home presenter"
+        <>
+        {loading ? <Loader /> : 
+            <Container>
+                {nowPlaying && nowPlaying.length > 0 && (
+                    <Section title="Now Playing">
+                        {nowPlaying.map(movie=>
+                            <Poster
+                                key={movie.id}
+                                id={movie.id}
+                                image={movie.poster_path}
+                                title={movie.title}
+                                rating={movie.vote_average}
+                                year={movie.release_date && movie.release_date.split("-")[0]}
+                            >
+                            
+                            </Poster>
+                        )}
+                    </Section>
+                )}
+                {popular && popular.length > 0 && (
+                    <Section title="Popular">
+                        {popular.map(movie=>
+                            <Poster
+                                key={movie.id}
+                                id={movie.id}
+                                image={movie.poster_path}
+                                title={movie.title}
+                                rating={movie.vote_average}
+                                year={movie.release_date && movie.release_date.split("-")[0]}
+                            >
+                            
+                            </Poster>
+                        )}
+                    </Section>
+                )}
+                {upcoming && upcoming.length > 0 && (
+                    <Section title="Upcoming">
+                        {nowPlaying.map(movie=>
+                            <Poster
+                                key={movie.id}
+                                id={movie.id}
+                                image={movie.poster_path}
+                                title={movie.title}
+                                rating={movie.vote_average}
+                                year={movie.release_date && movie.release_date.split("-")[0]}
+                            >
+                            
+                            </Poster>
+                        )}
+                    </Section>
+                )}
+            </Container>
+        }
+        </>
     )
 }
 

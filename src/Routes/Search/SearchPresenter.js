@@ -21,7 +21,7 @@ const Input = styled.input`
 
 
 const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, handleSubmit}) => {
-
+    // [{},{},...]
     // (조건문) ? (true 일때 실행) : (false 일때 실행)
     console.log(movieData)
     //release_date: "2021-07-07"
@@ -43,18 +43,27 @@ const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, hand
                             title={movie.title}
                             image={movie.poster_path}
                             rating={movie.vote_average}
-                            year={movie.release_date.split("-")[0]}
+                            year={movie.release_date && movie.release_date.split("-")[0]}
                             >
                         
                         </Poster>
                     )}
                 </Section>
-               }               
+                }               
 
                {tvData && tvData.length > 0 && 
                     <Section title="TVShow Results">
                         {tvData.map(tv=>
-                            <span key={tv.id}>{tv.name}</span>
+                            <Poster
+                                key={tv.id}
+                                id={tv.id}
+                                title={tv.name}
+                                image={tv.poster_path}
+                                rating={tv.vote_average}
+                                year={tv.first_air_date && tv.first_air_date.split("-")[0]}
+                            >
+
+                            </Poster>
                         )}
                     </Section>
                }

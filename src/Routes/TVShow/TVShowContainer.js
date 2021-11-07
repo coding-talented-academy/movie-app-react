@@ -7,10 +7,11 @@ const TVShowContainer = () => {
     const [tvData, setTVData] = useState({
         topRated : null,
         airingToday : null,
-        popular : null,
-        loading : true,
-        error : null
+        popular : null
     })
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
         getTvData()
@@ -18,34 +19,28 @@ const TVShowContainer = () => {
 
     const getTvData = async () => {
 
+        setLoading(true);
+
         try{
            const {data : {results : topRated}} = await tvShowApi.topRated();
            const {data : {results : airingToday}} = await tvShowApi.airingToday();
            const {data : {results : popular}} = await tvShowApi.popular();
 
            setTVData({
-               ...tvData,
                topRated : topRated,
                airingToday : airingToday,
                popular : popular
            })
 
         }catch{
-            setTVData({
-                ...tvData,
-                error : "Can't find movie data"
-            })
+            setError("Can't find movie data");
         }finally{
-            setTVData({
-                ...tvData,
-                loading : false
-            })
+            setLoading(false)
         }
-        
     }
 
     return(
-        <TVShowPresenter tvData={tvData}></TVShowPresenter>
+        <TVShowPresenter tvData={tvData} loading={loading} error={error}></TVShowPresenter>
     )
 }
 
