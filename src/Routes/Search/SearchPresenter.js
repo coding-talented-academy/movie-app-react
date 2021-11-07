@@ -3,6 +3,7 @@ import Section from "../../Components/Section";
 import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Poster from "../../Components/Poster";
+import { MOVIE_TYPE, TV_SHOW_TYPE } from "../../Components/Type";
 
 const Container = styled.div`
     padding : 20px;
@@ -39,6 +40,7 @@ const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, hand
                     {movieData.map(movie => 
                         <Poster
                             key={movie.id}
+                            type={MOVIE_TYPE}
                             id={movie.id}
                             title={movie.title}
                             image={movie.poster_path}
@@ -56,6 +58,7 @@ const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, hand
                         {tvData.map(tv=>
                             <Poster
                                 key={tv.id}
+                                type={TV_SHOW_TYPE}
                                 id={tv.id}
                                 title={tv.name}
                                 image={tv.poster_path}

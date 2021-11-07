@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { MOVIE_TYPE, TV_SHOW_TYPE } from "./Type";
 
 const Container = styled.div`
     font-size : 15px;
@@ -44,9 +46,10 @@ const Year = styled.span`
     color: rgba(255, 255, 255, 0.5);
 `
 
-const Poster = ({id, title, image, rating, year}) => {
-    
+const Poster = ({id, title, image, rating, year, type}) => {
+
     return (
+        <Link to={type && `${type.prefixUrl}/${id}`}>
         <Container>
             <ImageContainer>
                 <Image 
@@ -61,6 +64,7 @@ const Poster = ({id, title, image, rating, year}) => {
             <Title>{title}</Title>
             <Year>{year}</Year>
         </Container>
+        </Link>
     )
 }
 

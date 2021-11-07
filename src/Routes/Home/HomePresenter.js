@@ -3,6 +3,7 @@ import Loader from "../../Components/Loader";
 import styled from "styled-components";
 import Section from "../../Components/Section";
 import Poster from "../../Components/Poster";
+import { MOVIE_TYPE } from "../../Components/Type";
 
 const Container = styled.div`
     padding : 20px;
@@ -20,6 +21,7 @@ const HomePresenter = ({movieData : {nowPlaying, popular, upcoming}, loading, er
                         {nowPlaying.map(movie=>
                             <Poster
                                 key={movie.id}
+                                type={MOVIE_TYPE}
                                 id={movie.id}
                                 image={movie.poster_path}
                                 title={movie.title}
@@ -36,6 +38,7 @@ const HomePresenter = ({movieData : {nowPlaying, popular, upcoming}, loading, er
                         {popular.map(movie=>
                             <Poster
                                 key={movie.id}
+                                type={MOVIE_TYPE}
                                 id={movie.id}
                                 image={movie.poster_path}
                                 title={movie.title}
@@ -52,6 +55,7 @@ const HomePresenter = ({movieData : {nowPlaying, popular, upcoming}, loading, er
                         {nowPlaying.map(movie=>
                             <Poster
                                 key={movie.id}
+                                type={MOVIE_TYPE}
                                 id={movie.id}
                                 image={movie.poster_path}
                                 title={movie.title}

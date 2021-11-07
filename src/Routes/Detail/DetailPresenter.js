@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 
-const DetailPresenter = () => {
+const DetailPresenter = ({detailData, error, loading}) => {
+    useEffect(()=>{
+        console.log(detailData)
+    },[detailData])
+
     return(
         "detail presenter"
     )

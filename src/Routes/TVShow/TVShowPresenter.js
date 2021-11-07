@@ -3,6 +3,7 @@ import Loader from "../../Components/Loader"
 import Section from "../../Components/Section"
 import Poster from "../../Components/Poster"
 import styled from "styled-components";
+import { TV_SHOW_TYPE } from "../../Components/Type";
 
 const Container = styled.div`
     padding : 20px;
@@ -18,6 +19,7 @@ const TVShowPresenter = ({tvData : {topRated, popular, airingToday}, loading, er
                             {topRated.map(tv=>
                                 <Poster
                                     key={tv.id}
+                                    type={TV_SHOW_TYPE}
                                     id={tv.id}
                                     image={tv.poster_path}
                                     title={tv.name}
@@ -31,6 +33,7 @@ const TVShowPresenter = ({tvData : {topRated, popular, airingToday}, loading, er
                             {popular.map(tv=>
                                 <Poster
                                     key={tv.id}
+                                    type={TV_SHOW_TYPE}
                                     id={tv.id}
                                     image={tv.poster_path}
                                     title={tv.name}
@@ -44,6 +47,7 @@ const TVShowPresenter = ({tvData : {topRated, popular, airingToday}, loading, er
                             {airingToday.map(tv=>
                                 <Poster
                                     key={tv.id}
+                                    type={TV_SHOW_TYPE}
                                     id={tv.id}
                                     image={tv.poster_path}
                                     title={tv.name}
