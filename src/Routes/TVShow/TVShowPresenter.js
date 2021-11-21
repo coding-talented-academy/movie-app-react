@@ -4,6 +4,7 @@ import Section from "../../Components/Section"
 import Poster from "../../Components/Poster"
 import styled from "styled-components";
 import { TV_SHOW_TYPE } from "../../Components/Type";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
     padding : 20px;
@@ -56,6 +57,9 @@ const TVShowPresenter = ({tvData : {topRated, popular, airingToday}, loading, er
                                 ></Poster>)}
                         </Section>
                      }
+
+                {error && <Message text={error} color="red"></Message>}
+
                 </Container>
             }
         </>

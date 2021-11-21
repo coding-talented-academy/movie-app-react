@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Section from "../../Components/Section";
 import Poster from "../../Components/Poster";
 import { MOVIE_TYPE } from "../../Components/Type";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
     padding : 20px;
@@ -67,6 +68,9 @@ const HomePresenter = ({movieData : {nowPlaying, popular, upcoming}, loading, er
                         )}
                     </Section>
                 )}
+            
+                {error && <Message text={error} color="red"></Message>}
+
             </Container>
         }
         </>

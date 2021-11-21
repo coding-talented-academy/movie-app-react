@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Loader from "../../Components/Loader";
 import Poster from "../../Components/Poster";
 import { MOVIE_TYPE, TV_SHOW_TYPE } from "../../Components/Type";
+import Message from "../../Components/Message";
 
 const Container = styled.div`
     padding : 20px;
@@ -22,11 +23,7 @@ const Input = styled.input`
 
 
 const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, handleSubmit}) => {
-    // [{},{},...]
-    // (조건문) ? (true 일때 실행) : (false 일때 실행)
-    console.log(movieData)
-    //release_date: "2021-07-07"
-
+   
     return(
         <Container>
             <Form onSubmit={handleSubmit}>
@@ -70,7 +67,10 @@ const SearchPresenter = ({searchData : {movieData, tvData}, loading, error, hand
                         )}
                     </Section>
                }
-               
+               {error && <Message text={error} color="red"></Message>}
+               {tvData && movieData && tvData.length===0 && movieData.length===0 &&
+                <Message text="No Search Result..." color="yellow"></Message>
+               }
             </>
             }
             
